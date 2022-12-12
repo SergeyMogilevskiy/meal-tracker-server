@@ -1,0 +1,1 @@
+export { MealData } from './mealData';

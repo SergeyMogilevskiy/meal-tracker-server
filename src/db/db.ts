@@ -1,18 +1,17 @@
-import { MongoClient, MongoClientOptions } from 'mongodb';
+import { Db, MongoClient, MongoClientOptions } from 'mongodb';
 
 const DB_NAME = 'meal-tracker';
 
 interface DP_Props {
   _dbClient: MongoClient | null;
   connect: (url: string) => void;
-  getConnection: () => void;
+  getConnection: () => Db;
 }
 
 export const db: DP_Props = {
   _dbClient: null,
   connect: async function (url) {
     const client = await MongoClient.connect(url, {
-      poolSize: 10,
       useNewUrlParser: true,
       useUnifiedTopology: true,
     } as MongoClientOptions);
